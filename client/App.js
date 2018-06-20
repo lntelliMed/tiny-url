@@ -7,8 +7,8 @@ class App extends Component {
   render() {
     let routes = (
       <Switch >
-        <Route path="/" component={MainPage} />
-        <Redirect to="/" />
+        <Route path="/tiny-url" component={MainPage} />
+        <Redirect to="/tiny-url" />
       </Switch >
     );
 
