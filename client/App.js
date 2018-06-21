@@ -8,7 +8,7 @@ class App extends Component {
     let routes = (
       <Switch >
         <Route exact path="/" component={MainPage} />
-        {/* <Redirect to="/" /> */}
+        <Redirect to="/" />
       </Switch >
     );
 
