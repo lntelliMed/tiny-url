@@ -8,9 +8,6 @@ const app = express();
 
 const { Url } = require('./db/models');
 
-
-module.exports = app;
-
 const createApp = () => {
   app.use(morgan('dev'));
   app.use(bodyParser.json());
@@ -19,8 +16,6 @@ const createApp = () => {
   app.use('/api', require('./api'));
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
-
-
 
   app.get('/:shortUrl', (req, res, next) => {
     const shortUrl = req.params.shortUrl;
@@ -39,6 +34,7 @@ const createApp = () => {
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'));
   });
+
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
       const err = new Error('Not found');
@@ -48,6 +44,7 @@ const createApp = () => {
       next();
     }
   });
+
   app.use((err, req, res, next) => {
     console.error(err);
     console.error(err.stack);
@@ -59,7 +56,8 @@ const startListening = () => {
   const server = app.listen(PORT, () => console.log(`Starting server on port ${PORT}`));
 };
 
-
 db.sync()
     .then(createApp)
     .then(startListening);
+
+module.exports = app;

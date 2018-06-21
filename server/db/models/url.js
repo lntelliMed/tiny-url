@@ -1,4 +1,3 @@
-const Hashids = require('hashids');
 const Sequelize = require('sequelize');
 const db = require('../db');
 
@@ -21,11 +20,7 @@ const Url = db.define('url', {
     }
   },
   shortUrl: {
-    type: Sequelize.STRING,
-    set(valueToBeSet) {
-      const hashids = new Hashids();
-      this.setDataValue('shortUrl', hashids.encode(valueToBeSet));
-    }
+    type: Sequelize.STRING
   }
 });
 

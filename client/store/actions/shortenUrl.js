@@ -36,18 +36,3 @@ export const resetState = () => {
     type: actionTypes.RESET_STATE
   };
 };
-
-export const initLongUrl = (longUrl) => {
-  return {
-    type: actionTypes.FETCH_LONG_URL,
-    longUrl
-  };
-};
-
-export const fetchLongUrl = (shortUrl) => {
-  return dispatch => {
-    axios.get(`api/urls/${shortUrl}`)
-      .then(response => dispatch(initLongUrl(response.data.longUrl)))
-      .catch(console.error);
-  }
-};
