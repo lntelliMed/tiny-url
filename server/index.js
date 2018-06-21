@@ -6,6 +6,9 @@ const db = require('./db');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+const { Url } = require('./db/models');
+
+
 module.exports = app;
 
 const createApp = () => {
@@ -14,6 +17,7 @@ const createApp = () => {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use('/api', require('./api'));
+
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
@@ -26,6 +30,16 @@ const createApp = () => {
   //     next();
   //   }
   // });
+
+  app.get('/:shortUrl', (req, res, next) => {
+    const shortUrl = req.params.shortUrl;
+    Url.findOne({ where: { shortUrl } })
+      .then(url => {
+        res.status(302).redirect(url.longUrl);
+        // res.status(200).json({ longUrl: url.longUrl });
+      })
+      .catch(next);
+  });
 
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'));

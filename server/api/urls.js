@@ -11,15 +11,15 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:shortUrl', (req, res, next) => {
-  const shortUrl = req.params.shortUrl;
-  Url.findOne({ where: { shortUrl } })
-    .then(url => {
-      res.status(302).redirect(url.longUrl);
-      // res.status(200).json({ longUrl: url.longUrl });
-    })
-    .catch(next);
-});
+// router.get('/:shortUrl', (req, res, next) => {
+//   const shortUrl = req.params.shortUrl;
+//   Url.findOne({ where: { shortUrl } })
+//     .then(url => {
+//       res.status(302).redirect(url.longUrl);
+//       // res.status(200).json({ longUrl: url.longUrl });
+//     })
+//     .catch(next);
+// });
 
 router.post('/', (req, res, next) => {
   const longUrl = req.body.longUrl;

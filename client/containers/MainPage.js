@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Header from '../components/Header';
 import * as actions from '../store/actions';
 
 class MainPage extends Component {
@@ -25,7 +26,7 @@ class MainPage extends Component {
   render () {
     let tinyUrl = null;
     if (this.props.tinyUrl) {
-      const generatedUrl = `${window.location.protocol}//${window.location.host}/api/urls/${this.props.tinyUrl}`;
+      const generatedUrl = `${window.location.protocol}//${window.location.host}/${this.props.tinyUrl}`;
       tinyUrl = (
         <div>
           <h2>The generated URL is:</h2>
@@ -42,6 +43,7 @@ class MainPage extends Component {
 
     return (
       <div className="container">
+        <Header />
         <h1>Please enter the long URL that needs to be shortened:</h1>
         <br />
         <input

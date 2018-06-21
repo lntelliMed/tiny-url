@@ -6,6 +6,14 @@ body {
   background: linear-gradient(to right, #009fff, #ec2f4b);
 }
 
+ nav {
+  background-image: url('vz-logo.png');
+  background-repeat: no-repeat;
+  border-bottom: 1px solid gray;
+  padding-top: 2px;
+  word-wrap: break-word;
+}
+
 .container {
   display: flex;
   flex-direction: column;
