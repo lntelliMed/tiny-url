@@ -14,6 +14,12 @@ class MainPage extends Component {
   handleTinyUrlGeneration = () => {
     this.props.onInitTinyUrl(this.state.longUrl);
   }
+  handleStateReset = () => {
+    this.setState({
+      longUrl: ''
+    });
+    this.props.onResetState();
+  }
 
   handleLongUrlChange = (event) => {
     this.setState({
@@ -25,10 +31,6 @@ class MainPage extends Component {
     window.location.assign(newUrl);
   }
 
-  // handleLongUrlRedirect = (newUrl) => {
-  //   this.props.onInitLongUrl(newUrl);
-  // }
-
   render () {
     let pending = null;
     let tinyUrl = null;
@@ -39,20 +41,11 @@ class MainPage extends Component {
     }
 
     if (this.props.tinyUrl) {
-      // const generatedUrl = `${window.location.protocol}//${window.location.host}/${this.props.tinyUrl}`;
       const generatedUrl = this.props.tinyUrl;
       tinyUrl = (
         <div>
           <h2>The generated URL is:</h2>
-          {/* <h3 onClick={() => this.handleLongUrlRedirect(this.props.tinyUrl)}>
-              {generatedUrl}
-          </h3> */}
-          {/* <button id="redirect-button" onClick={() => window.location.assign(this.state.longUrl)}>Go to URL</button> */}
-          {/* <h3>
-            {generatedUrl}
-          </h3> */}
-          {/* <button id="redirect-button" onClick={() => window.location.assign(generatedUrl) }>Visit Generated URL</button> */}
-          <TinyUrl generatedUrl={generatedUrl} redirect={this.handleRedirect} />
+          <TinyUrl generatedUrl={generatedUrl} redirect={this.handleRedirect} reset={this.handleStateReset} />
         </div>
       );
     }
@@ -66,7 +59,7 @@ class MainPage extends Component {
     }
 
     return (
-      <div className="container">
+      <main className="container">
         <Header />
         <h1>Please enter the long URL that needs to be shortened:</h1>
         <br />
@@ -81,7 +74,7 @@ class MainPage extends Component {
         {tinyUrl}
         {pending}
         {error}
-      </div>
+      </main>
     );
   }
 }
@@ -98,7 +91,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onInitTinyUrl: (longUrl) => dispatch(actions.fetchTinyUrl(longUrl)),
-    onInitLongUrl: (shortUrl) => dispatch(actions.fetchLongUrl(shortUrl))
+    onInitLongUrl: (shortUrl) => dispatch(actions.fetchLongUrl(shortUrl)),
+    onResetState: () => dispatch(actions.resetState())
   };
 };
 

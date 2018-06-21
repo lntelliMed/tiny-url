@@ -28,6 +28,14 @@ const reducer = (state = initialState, action) => {
         isPending: true,
         error: null
       };
+    case actionTypes.RESET_STATE:
+      return {
+        ...state,
+        tinyUrl: '',
+        longUrl: '',
+        isPending: false,
+        error: null
+      };
     case actionTypes.FETCH_LONG_URL:
       return {
         ...state,

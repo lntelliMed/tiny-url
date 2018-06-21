@@ -46,8 +46,8 @@ body {
 }
 
 .container button:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
   -webkit-box-shadow: 1px 1px 1px gray;
           box-shadow: 1px 1px 1px gray;
 }
@@ -66,7 +66,7 @@ body {
 .redirect button {
   width: 20%;
   font-size: 1em;
-  margin-right: 5px;
+  margin: 5px;
   background: rgb(245, 181, 181);
 }
 
@@ -74,10 +74,16 @@ body {
   .container button {
     font-size: 1em;
   }
+  .redirect button {
+    font-size: 0.8em;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .container button {
     font-size: 0.8em;
+  }
+  .redirect button {
+    font-size: 0.6em;
   }
 }

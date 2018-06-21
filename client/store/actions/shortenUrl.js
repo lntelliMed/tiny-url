@@ -31,6 +31,12 @@ export const fetchTinyUrl = (longUrl) => {
   }
 };
 
+export const resetState = () => {
+  return {
+    type: actionTypes.RESET_STATE
+  };
+};
+
 export const initLongUrl = (longUrl) => {
   return {
     type: actionTypes.FETCH_LONG_URL,

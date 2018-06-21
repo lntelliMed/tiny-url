@@ -1,4 +1,5 @@
 export {
   fetchTinyUrl,
-  fetchLongUrl
+  fetchLongUrl,
+  resetState
 } from './shortenUrl';
