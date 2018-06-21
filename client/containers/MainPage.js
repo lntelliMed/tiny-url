@@ -31,7 +31,7 @@ class MainPage extends Component {
           <h2>The generated URL is:</h2>
           <h3 onClick={() => this.handleLongUrlRedirect(this.props.tinyUrl)}>
               {generatedUrl}
-            </h3>
+          </h3>
         </div>
       );
     }
@@ -41,10 +41,15 @@ class MainPage extends Component {
     }
 
     return (
-      <div>
-        <label>Please enter the URL that needs to be shortened:</label>
+      <div className="container">
+        <h1>Please enter the long URL that needs to be shortened:</h1>
         <br />
-        <input type="text" value={this.state.longUrl} onChange={(event) => this.handleLongUrlChange(event)} />
+        <input
+          type="text"
+          value={this.state.longUrl}
+          onChange={(event) => this.handleLongUrlChange(event)}
+          placeholder="http://www.example.org /5668639101419520/5649050225344512/5668600916475904/"
+        />
         <br />
         <button onClick={() => this.handleTinyUrlGeneration()}>Generate Tiny URL</button>
         {tinyUrl}

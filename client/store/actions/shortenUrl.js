@@ -14,7 +14,7 @@ export const fetchTinyUrl = (longUrl) => {
   return dispatch => {
     axios.post('/api/urls', {longUrl})
       .then(response => dispatch(initTinyUrl(response.data.shortUrl)))
-      .catch(console.err);
+      .catch(console.error);
   }
 };
 
@@ -31,6 +31,6 @@ export const fetchLongUrl = (shortUrl) => {
   return dispatch => {
     axios.get(`api/urls/${shortUrl}`)
       .then(response => dispatch(initLongUrl(response.data.longUrl)))
-      .catch(console.err);
+      .catch(console.error);
   }
 };
