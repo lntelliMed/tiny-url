@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
-import Error from '../components/error';
 import * as actions from '../store/actions';
+import Error from '../components/Error';
+import TinyUrl from '../components/TinyUrl';
 
 class MainPage extends Component {
   state = {
@@ -18,6 +19,10 @@ class MainPage extends Component {
     this.setState({
       longUrl: event.target.value
     });
+  }
+
+  handleRedirect = (newUrl) => {
+    window.location.assign(newUrl);
   }
 
   // handleLongUrlRedirect = (newUrl) => {
@@ -43,10 +48,11 @@ class MainPage extends Component {
               {generatedUrl}
           </h3> */}
           {/* <button id="redirect-button" onClick={() => window.location.assign(this.state.longUrl)}>Go to URL</button> */}
-          <h3>
+          {/* <h3>
             {generatedUrl}
-          </h3>
-          <button id="redirect-button" onClick={() => window.location.assign(generatedUrl) }>Visit Generated URL</button>
+          </h3> */}
+          {/* <button id="redirect-button" onClick={() => window.location.assign(generatedUrl) }>Visit Generated URL</button> */}
+          <TinyUrl generatedUrl={generatedUrl} redirect={this.handleRedirect} />
         </div>
       );
     }

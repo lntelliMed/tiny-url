@@ -45,12 +45,6 @@ body {
   transition: all 0.5s ease;
 }
 
-#redirect-button {
-  width: 20%;
-  font-size: 1em;
-  background: rgb(245, 181, 181);
-}
-
 .container button:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
@@ -62,6 +56,20 @@ body {
   color: red;
   font-size: 0.7em;
 }
+
+.redirect input {
+  width: 70%;
+  border: 0.5px solid gray;
+  text-align: center;
+}
+
+.redirect button {
+  width: 20%;
+  font-size: 1em;
+  margin-right: 5px;
+  background: rgb(245, 181, 181);
+}
+
 @media screen and (max-width: 780px) {
   .container button {
     font-size: 1em;
