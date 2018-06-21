@@ -26,8 +26,12 @@ const createApp = () => {
     const shortUrl = req.params.shortUrl;
     Url.findOne({ where: { shortUrl } })
       .then(url => {
-        res.status(302).redirect(url.longUrl);
-        // res.status(200).json({ longUrl: url.longUrl });
+        if (url) {
+          res.status(302).redirect(url.longUrl);
+          // res.status(200).json({ longUrl: url.longUrl });
+        } else {
+          res.status(302).redirect('/');
+        }
       })
       .catch(next);
   });
