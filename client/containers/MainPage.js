@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
+import Error from '../components/error';
 import * as actions from '../store/actions';
 
 class MainPage extends Component {
@@ -24,7 +25,14 @@ class MainPage extends Component {
   // }
 
   render () {
+    let pending = null;
     let tinyUrl = null;
+    let error = null;
+
+    if (this.props.isPending) {
+      pending = <p>Retrieving the short URL. Please wait!</p>
+    }
+
     if (this.props.tinyUrl) {
       const generatedUrl = `${window.location.protocol}//${window.location.host}/${this.props.tinyUrl}`;
       tinyUrl = (
@@ -43,7 +51,11 @@ class MainPage extends Component {
     }
 
     if (this.props.longUrl) {
-      window.location.assign(this.props.longUrl)
+      window.location.assign(this.props.longUrl);
+    }
+
+    if (this.props.error) {
+      error = <Error error={this.props.error} />
     }
 
     return (
@@ -60,6 +72,8 @@ class MainPage extends Component {
         <br />
         <button onClick={() => this.handleTinyUrlGeneration()}>Generate Tiny URL</button>
         {tinyUrl}
+        {pending}
+        {error}
       </div>
     );
   }
@@ -68,7 +82,9 @@ class MainPage extends Component {
 const mapStateToProps = state => {
   return {
     tinyUrl: state.shortenUrl.tinyUrl,
-    longUrl: state.shortenUrl.longUrl
+    longUrl: state.shortenUrl.longUrl,
+    isPending: state.shortenUrl.isPending,
+    error: state.shortenUrl.error
   };
 };
 

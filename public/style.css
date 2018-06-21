@@ -58,6 +58,10 @@ body {
           box-shadow: 1px 1px 1px gray;
 }
 
+.error {
+  color: red;
+  font-size: 0.7em;
+}
 @media screen and (max-width: 780px) {
   .container button {
     font-size: 1em;
