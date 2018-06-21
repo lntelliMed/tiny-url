@@ -9,7 +9,6 @@ export const initTinyUrl = (tinyUrl) => {
   };
 };
 
-
 export const fetchTinyUrl = (longUrl) => {
   return dispatch => {
     axios.post('/api/urls', {longUrl})
@@ -18,14 +17,12 @@ export const fetchTinyUrl = (longUrl) => {
   }
 };
 
-
 export const initLongUrl = (longUrl) => {
   return {
     type: actionTypes.FETCH_LONG_URL,
     longUrl
   };
 };
-
 
 export const fetchLongUrl = (shortUrl) => {
   return dispatch => {

@@ -17,11 +17,13 @@ body {
   word-wrap: break-word;
   background: rgb(202, 202, 202);
   opacity: 0.8;
+  border-radius: 10px;
 }
 
 .container input {
   font-size: 1.3em;
 }
+
 .container button {
   color: black;
   background: gold;

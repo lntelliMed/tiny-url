@@ -21,7 +21,6 @@ router.get('/:shortUrl', (req, res, next) => {
     .catch(next);
 });
 
-
 router.post('/', (req, res, next) => {
   const longUrl = req.body.longUrl;
   Url.findOrCreate({ where: { longUrl } })
@@ -37,6 +36,8 @@ router.post('/', (req, res, next) => {
           .catch(console.error);
       }
       res.status(200).json({
+        id: instance.id,
+        longUrl: instance.longUrl,
         shortUrl: instance.shortUrl,
         wasAdded
       });
