@@ -3,11 +3,25 @@ const { Url } = require('../db/models');
 
 module.exports = router;
 
+const getFullShortUrl = (shortUrl, req) => {
+  return req.protocol + '://' + req.headers.host + '/' + shortUrl
+};
+
 router.get('/', (req, res, next) => {
   Url.findAll({
     attributes: ['id', 'longUrl', 'shortUrl']
   })
-    .then(urls => res.json(urls))
+    .then(urls => {
+      const updatedUrls = urls.map(url => {
+        const {id, longUrl, shortUrl} = url;
+        return {
+          id,
+          longUrl,
+          shortUrl: getFullShortUrl(shortUrl, req)
+        }
+      });
+      res.status(200).json(updatedUrls);
+    })
     .catch(next);
 });
 
@@ -27,8 +41,8 @@ router.post('/', (req, res, next) => {
       }
       res.status(200).json({
         id: instance.id,
-        longUrl: instance.longUrl,
-        shortUrl: instance.shortUrl,
+        longUrl:  instance.longUrl,
+        shortUrl: getFullShortUrl(instance.shortUrl, req),
         wasAdded
       });
     })

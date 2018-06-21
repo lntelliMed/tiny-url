@@ -34,7 +34,8 @@ class MainPage extends Component {
     }
 
     if (this.props.tinyUrl) {
-      const generatedUrl = `${window.location.protocol}//${window.location.host}/${this.props.tinyUrl}`;
+      // const generatedUrl = `${window.location.protocol}//${window.location.host}/${this.props.tinyUrl}`;
+      const generatedUrl = this.props.tinyUrl;
       tinyUrl = (
         <div>
           <h2>The generated URL is:</h2>
