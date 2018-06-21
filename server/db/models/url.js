@@ -9,9 +9,16 @@ const Url = db.define('url', {
     primaryKey: true
   },
   longUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      len: {
+        args: [1, 2048],
+        msg: 'Please provide valid URL within 1 to 2048 characters.'
+      }
+    }
   },
   shortUrl: {
     type: Sequelize.STRING,

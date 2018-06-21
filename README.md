@@ -2,6 +2,6 @@
 
 Technologies used include React/Redux, HTML5/CSS3, Node.js, Express, Sequelize/PostgreSQL.
 
-[See this app live!](https://vz-tinyurl.herokuapp.com/tiny-url)
+[See this app live!](https://vz-tinyurl.herokuapp.com)
 
 ![alt text](screenshots/tiny-url.png "Tiny URL Generator App")
