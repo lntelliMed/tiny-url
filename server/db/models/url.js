@@ -20,7 +20,8 @@ const Url = db.define('url', {
     }
   },
   shortUrl: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    unique: true
   }
 });
 

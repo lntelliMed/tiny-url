@@ -1,10 +1,16 @@
 const router = require('express').Router();
 const Hashids = require('hashids');
-const { Url } = require('../db/models');
+const { Url, db } = require('../db/models');
 
 
 const formatShortUrl = (shortUrl, req) => {
-  return req.protocol + '://' + req.headers.host + '/' + shortUrl;
+  const urlPrefix = req.protocol + '://' + req.headers.host + '/';
+  return shortUrl.includes(urlPrefix) ? shortUrl : urlPrefix + shortUrl;
+};
+
+const removeUrlPrefix = (url, req) => {
+  const urlPrefix = req.protocol + '://' + req.headers.host + '/';
+  return url.replace(urlPrefix, '');
 };
 
 router.get('/', (req, res, next) => {
@@ -40,8 +46,7 @@ router.get('/:urlId', (req, res, next) => {
           error: 'Not found'
         });
       }
-    }
-    )
+    })
     .catch(next);
 });
 
@@ -65,7 +70,8 @@ router.post('/', (req, res, next) => {
       const responseObj = {
         id: instance.id,
         longUrl: instance.longUrl,
-        shortUrl: instance.shortUrl
+        shortUrl: instance.shortUrl,
+        wasAdded
       };
 
       if (!wasAdded) {
@@ -82,6 +88,45 @@ router.post('/', (req, res, next) => {
       }
     })
     .catch(next);
+});
+
+router.put('/:urlId', (req, res, next) => {
+  const urlId = req.params.urlId;
+  const {longUrl, shortUrl} = req.body;
+
+  Url.findAll({
+    where: {
+      [db.Op.or]: [{ longUrl }, { shortUrl: removeUrlPrefix(shortUrl, req) }]
+    }
+  })
+  .then(urls => {
+    if (urls && urls.length >= 1) {
+      for (let url of urls) {
+        if (url.id !== parseInt(urlId)) {
+          res.status(405).json({
+            error: 'Another matching record exists with same field value(s)'
+          });
+        }
+      }
+    }
+  })
+  .catch(next);
+
+  Url.update({
+      longUrl,
+      shortUrl
+    }, {
+        where: { id: urlId },
+        returning: true,
+        plain: true
+      })
+  .spread((numberOfAffectedRows, affectedRows) => {
+    res.status(200).json({
+      numberOfAffectedRows,
+      affectedRows
+    });
+  })
+  .catch(next);
 });
 
 module.exports = router;
