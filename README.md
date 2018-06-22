@@ -46,11 +46,11 @@ N/A
 N/A
 
 ### Sample Output:
-{
-    "id": 1,
-    "longUrl": "https://www.amazon.com/Amazon-Kindle-Paperwhite-6-Inch-4GB-eReader/dp/B00OQVZDJM/ref=sr_1_1?ie=UTF8&qid=1529624251&sr=8-1&keywords=kindle",
-    "shortUrl": "http://vz-tinyurl.herokuapp.com/jR"
-}
+      {
+          "id": 1,
+          "longUrl": "https://www.amazon.com/Amazon-Kindle-Paperwhite-6-Inch-4GB-eReader/dp/B00OQVZDJM/ref=sr_1_1?ie=UTF8&qid=1529624251&sr=8-1&keywords=kindle",
+          "shortUrl": "http://vz-tinyurl.herokuapp.com/jR"
+      }
 
 ---
 
@@ -87,7 +87,7 @@ NOTE: POST will first attempt to return any matching record in case it was alrea
 
 ## PUT: https://vz-tinyurl.herokuapp.com/api/urls/4
 
-### Sample Input (URL ID needs to be supplied as a request parameter any URL ID supplied in the body is just ignored)
+### Sample Input (URL ID needs to be supplied as a request parameter. Any URL ID supplied in the body is just ignored)
       {
           "longUrl": "https://www.ebay.com/itm/DJI-Mavic-Pro-DJI-Mavic-Propeller-Guard-64GB-Card-Card-Hardcase-Cloth/182859584378?epid=694659840&hash=item2a9347d37a:g:OJAAAOSwAHBaRnwj",
           "shortUrl": "http://vz-tinyurl.herokuapp.com/MYNEWURL"

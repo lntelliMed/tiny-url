@@ -23,6 +23,7 @@ class TinyUrl extends React.Component {
           type="text"
           ref={(tinyUrl) => this.tinyUrl = tinyUrl}
           defaultValue={this.props.generatedUrl}
+          disabled
         />
         <br />
         {

@@ -152,11 +152,11 @@ router.put('/:urlId', (req, res, next) => {
       }
     }
   })
-    .catch(error => {
-      return res.status(404).json({
-        error
-      });
+  .catch(error => {
+    return res.status(404).json({
+      error
     });
+  });
 
   Url.update({
       longUrl,
@@ -172,11 +172,11 @@ router.put('/:urlId', (req, res, next) => {
       affectedRows
     });
   })
-    .catch(error => {
-      res.status(404).json({
-        error
-      });
+  .catch(error => {
+    res.status(404).json({
+      error
     });
+  });
 });
 
 module.exports = router;
