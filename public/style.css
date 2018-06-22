@@ -41,6 +41,7 @@ body {
   width: 30%;
   font-size: 1.3em;
   margin: auto;
+  border: 0.5px solid gray;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
