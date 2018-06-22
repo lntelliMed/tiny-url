@@ -160,7 +160,7 @@ router.put('/:urlId', (req, res, next) => {
 
   Url.update({
       longUrl,
-      shortUrl
+      shortUrl: removeUrlPrefix(shortUrl, req)
     }, {
         where: { id: urlId },
         returning: true,

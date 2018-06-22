@@ -98,7 +98,7 @@ NOTE: POST will first attempt to return any matching record in case it was alrea
           "affectedRows": {
               "id": 4,
               "longUrl": "https://www.ebay.com/itm/DJI-Mavic-Pro-DJI-Mavic-Propeller-Guard-64GB-Card-Card-Hardcase-Cloth/182859584378?epid=694659840&hash=item2a9347d37a:g:OJAAAOSwAHBaRnwj",
-              "shortUrl": "http://vz-tinyurl.herokuapp.com/MYNEWURL",
+              "shortUrl": "MYNEWURL",
               "createdAt": "2018-06-22T05:05:29.808Z",
               "updatedAt": "2018-06-22T05:11:11.182Z"
           }
